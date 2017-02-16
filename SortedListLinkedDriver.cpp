@@ -14,9 +14,11 @@ void addCDs(ListArray<CD>* list, SortedListLinked<CD>* lb)
 
    //DO THIS
    //iterate over and add the cds to the list box (use lb->addItem)
-
-
-
+	while(iter->hasNext())
+	{
+		CD* cd = iter->next();
+		lb->add(cd);
+	}
 
    delete iter;
 }
@@ -27,6 +29,11 @@ void deleteCDs(ListArray<CD>* list)
 
    //DO THIS  
    //iterate over and delete the cds
+   while(iter->hasNext())
+   {
+	   CD* cd = iter->next();
+	   delete cd;
+   }
 
 
 
@@ -39,31 +46,16 @@ int main(int argc, char* argv[])
    ListArray<CD>* cds = CD::readCDs("cds.txt");
    //DO THIS
    //create and test the sorted linked list 
-	addCDs(cds, SortedListLinked<CD>*sorted = new SortedListLinked<CD>());
-	
-	ListArrayIterator<CD>* iter = sorted->iterator();
-	
-	while(iter->hasNext())
-	{
-		iter->next()->display();
-	}
-	delete sorted;
-	
+   SortedListLinked<CD>* list = new SortedListLinked<CD>();
+   addCDs(cds, list);
+   ListArrayIterator<CD>* iter = list->iterator();
+   while(iter->hasNext())
+   {
+	   iter->next()->getItem()->displayCD();
+   }
+   delete list;
+   
+   
+
    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
